@@ -6,9 +6,13 @@ metadata:
   labels:
     ai.clipper.container.label: {{ cluster_name }}
     ai.clipper.name: query-frontend
+    app: query-frontend
   name: {{ name }}-at-{{ cluster_name }}
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: query-frontend
   template:
     metadata:
       annotations:
@@ -18,6 +22,7 @@ spec:
         ai.clipper.container.label: {{ cluster_name }}
         ai.clipper.name: query-frontend
         ai.clipper.query_frontend.id: "{{ id_label }}"
+        app: query-frontend
     spec:
       containers:
       - args: # If redis_service_host == None, default to env var
