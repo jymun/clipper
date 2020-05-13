@@ -4,14 +4,19 @@ metadata:
   labels:
     ai.clipper.container.label: {{ cluster_name }}
     ai.clipper.name: mgmt-frontend
+    app: mgmt-frontend
   name: mgmt-frontend-at-{{ cluster_name }}
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: mgmt-frontend
   template:
     metadata:
       labels:
         ai.clipper.container.label: {{ cluster_name }}
         ai.clipper.name: mgmt-frontend
+        app: mgmt-frontend
     spec:
       containers:
       - args:
