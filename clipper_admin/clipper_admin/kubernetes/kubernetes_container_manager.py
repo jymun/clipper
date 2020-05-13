@@ -166,7 +166,7 @@ class KubernetesContainerManager(ContainerManager):
         config.load_kube_config()
         configuration.assert_hostname = False
         self._k8s_v1 = client.CoreV1Api()
-        self._k8s_beta = client.ExtensionsV1beta1Api()
+        self._k8s_beta = client.AppsV1Api()
         self._k8s_rbac = client.RbacAuthorizationV1beta1Api()
 
 
