@@ -4,14 +4,19 @@ metadata:
   labels:
     ai.clipper.container.label: {{ cluster_name }}
     ai.clipper.name: metrics
+    app: metrics
   name: metrics-at-{{ cluster_name }}
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: metrics
   template:
     metadata:
       labels:
         ai.clipper.container.label: {{ cluster_name }}
         ai.clipper.name: metrics
+        app: metrics
     spec:
       containers:
       - image: prom/prometheus:{{ version }}
