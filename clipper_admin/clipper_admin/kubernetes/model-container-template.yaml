@@ -19,11 +19,11 @@ spec:
         prometheus.io/port: "1390"
         prometheus.io/scrape: "true"
         test: readiness
-        app: model
       labels:
         ai.clipper.container.label: {{ cluster_name }}
         ai.clipper.model_container.label: {{ container_label }}
         ai.clipper.name: model
+        app: model
     spec:
       containers:
         - env:
