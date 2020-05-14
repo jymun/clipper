@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   label:
@@ -6,15 +6,20 @@ metadata:
     ai.clipper.container.label: {{ cluster_name }}
     ai.clipper.model_container.label: {{ container_label }}
     ai.clipper.name: model
+    app: model
   name: {{ deployment_name }} # Cluster name included
 spec:
   replicas: {{ num_replicas }}
+  selector:
+    matchLabels:
+      app: model
   template:
     metadata:
       annotations:
         prometheus.io/port: "1390"
         prometheus.io/scrape: "true"
         test: readiness
+        app: model
       labels:
         ai.clipper.container.label: {{ cluster_name }}
         ai.clipper.model_container.label: {{ container_label }}
